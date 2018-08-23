@@ -11,8 +11,10 @@ datagroup: test_prod_dev_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: test_prod_dev_default_datagroup
+#test git padawan
 
+persist_with: test_prod_dev_default_datagroup
+explore: orders_extended {}
 explore: events {
   join: users {
     type: left_outer
@@ -30,6 +32,7 @@ explore: inventory_items {
 }
 
 explore: order_items {
+#  hidden: yes
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
@@ -56,6 +59,7 @@ explore: order_items {
 }
 
 explore: orders {
+  sql_always_where: ${orders.created_date} = {% parameter orders.now_prameter %};;
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;

@@ -21,6 +21,10 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+  parameter: now_prameter {
+    type: unquoted
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
@@ -33,6 +37,7 @@ view: orders {
   }
 
   measure: count {
+    hidden:  yes
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
   }
