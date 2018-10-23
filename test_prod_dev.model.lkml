@@ -4,7 +4,7 @@
 include: "*.view"
 
 # include all the dashboards
-include: "*.dashboard"
+# include: "*.dashboard"
 
 datagroup: test_prod_dev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
